@@ -8,17 +8,19 @@ print_r($employes);
 <div class="container">
     <div class="row">
         <div class="col-md-8 mx-auto">
+            <?php include('./views/includes/alerts.php');?>
             <div class="card">
                 <div class="card-body bg-light" >
                     <a href="<?= BASE_URL;  ?>add"> <i class="fas fa-plus"> add</i> </a>
-                    <?php if(isset($_SESSION['add_error'])): ?>
-                    <div class="alert alert-<?php if($_SESSION['add_error']=== 'row added successfully to databse'):
+                    for
+                    <?php if(isset($_SESSION['crud_error'])): ?>
+                    <div class="alert alert-<?php if($_SESSION['crud_error']=== 'Process Success :)'):
                     echo 'success'; else: echo 'danger'; endif ?>
                     alert-dismissible fade show">
                     <strong>wrong!</strong>
                     <?php 
-                    echo $_SESSION['add_error'] ; 
-                    unset($_SESSION['add_error'] );
+                    echo $_SESSION['crud_error'] ; 
+                    unset($_SESSION['crud_error'] );
                     ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert">
                         </button>
@@ -41,7 +43,7 @@ print_r($employes);
                                     <th scope="row h"><?= $employe["id"]; ?></th>
                                     <td><?= $employe["name"]; ?></td>
                                     <td><?= $employe["status"] ? '<span class=" badge bg-success ">active</span>' :
-                                    '<span class=" badge bg-danger ">rellié</span>' ?></td>
+                                        '<span class=" badge bg-danger ">rellié</span>'; ?></td>
                                     <td>
                                         <form action="update" method="post" class=" d-inline-block m-1">
                                             <input type="hidden" name="id"
@@ -56,8 +58,6 @@ print_r($employes);
                                             value="<?= $employe["id"]; ?>">
                                             <button class="btn btn-sm btn-danger" type="submit"> Delete<i class="  fa fa-trashe"></i>
                                             </button>
-                                        
-
                                         </form>
                                     </td>
                                     
