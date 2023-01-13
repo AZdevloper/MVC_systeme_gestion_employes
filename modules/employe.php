@@ -2,6 +2,13 @@
 
 class Employe {
 
+     static public function find($data){
+          extract($data);
+          $stmt= DB::connect()->prepare('SELECT  * FROM employees WHERE name LIKE ? ');
+          $stmt->execute(array('%'.$search.'%'));
+         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+       }
      static public function getAll(){
         $stmt= DB::connect()->prepare('SELECT  * FROM employees');
         $stmt->execute();

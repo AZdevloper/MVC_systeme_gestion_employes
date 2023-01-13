@@ -1,6 +1,22 @@
 <?php 
 class EmployesController{
 
+    public function findEmployes()
+    {
+        // $employes = Employe::find();
+        if (!empty($_POST['search'])) {
+            $data = array(
+                'search' => $_POST['search']
+            );
+
+            $employes = Employe::find($data);
+            if ($employes) {
+                $_SESSION['crud_error'] = 'Process Success :)';
+            }
+
+            return $employes;   
+        }
+    }
     public function getAllEmployes(){
         $employes = Employe::getAll();
 

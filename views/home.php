@@ -1,8 +1,17 @@
 <?php
-$data = new EmployesController();
-$employes = $data->getAllEmployes();
+if (isset($_POST['find'])) {
+    # code...
+    $data = new EmployesController();
+    $employes = $data->findEmployes();
+    
+} else {
+    # code...
+    $data = new EmployesController();
+    $employes = $data->getAllEmployes();
+    
+    // print_r($employes);
+}
 
-print_r($employes);
 ?>
 
 <div class="container">
@@ -12,7 +21,11 @@ print_r($employes);
             <div class="card">
                 <div class="card-body bg-light" >
                     <a href="<?= BASE_URL;  ?>add"> <i class="fas fa-plus"> add</i> </a>
-                    for
+                    <a href="<?= BASE_URL;  ?>logout"> <i class="fas fa-user"></i><?= $_SESSION['username'] ?> </a>
+                    <form action="" method="post" class=" float-right d-flex flex-row">
+                        <input type="text" name="search" id="" placeholder="recherche" class=" form-control w-100 rounded-1">
+                        <button type="submit" name="find" class="btn btn-sm btn-info"> <i class="fa fa-search"></i> </button>
+                    </form>
                     <?php if(isset($_SESSION['crud_error'])): ?>
                     <div class="alert alert-<?php if($_SESSION['crud_error']=== 'Process Success :)'):
                     echo 'success'; else: echo 'danger'; endif ?>
